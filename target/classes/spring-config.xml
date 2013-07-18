@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <bean id="placeholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:db.properties"/>
+    </bean>
+    <bean id="bankAccountService" class="com.qsoft.banking.business.impl.BankAccountServiceImpl"/>
+    <bean id="transactionService" class="com.qsoft.banking.business.impl.TransactionServiceImpl"/>
+    <bean id="bankAccountDAO" class="com.qsoft.banking.persistence.dao.impl.BankAccountDAOImpl" scope="prototype"/>
+    <bean id="transactionDAO" class="com.qsoft.banking.persistence.dao.impl.TransactionDAOImpl"/>
+    <bean id="dataSource"  class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${db.driver}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+    </bean>
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="packagesToScan" value="com.qsoft.banking.persistence.model"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="persistenceUnitName" value="NewPersistenceUnit"/>
+        <property name="persistenceXmlLocation" value="META-INF/persistence.xml"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <tx:annotation-driven/>
+    <context:component-scan base-package="com.qsoft"/>
+</beans>

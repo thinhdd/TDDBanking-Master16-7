@@ -1,0 +1,4 @@
+Việc test theo  quynh trình hiện tại gây ra việc phải khá lâu để có thể thực hiện lần test đầu tiên.
+Việc viết chi tiết tất cả các thành phần của dự án rồi test dẫn đến việc có thể đi sai hướng và mắc lỗi rất nhiều khi test.
+TDD mang lại cho nhóm dự án một luồng, khung xương ổn định của chương trình, với mục đích bám sát requirement để viết các test.Mục đích
+của TDD giúp việc vượt qua các test ban đầu và từ đó có thể pass qua các test khác dễ hơn.
