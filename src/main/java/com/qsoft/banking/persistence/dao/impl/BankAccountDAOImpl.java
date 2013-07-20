@@ -25,6 +25,15 @@ public class BankAccountDAOImpl implements BankAccountDAO{
     private EntityManager entityManager;
     @Override
     public void save(BankAccountDTO account) {
+       // BankAccountDTO bankAccountDTO = entityManager.merge(account);
+        if(account.getId()!= null)
+        {
+            entityManager.persist(account);
+        }else if (account.getId()==null)
+        {
+            entityManager.merge(account);
+        }
+        //entityManager.flush();
 
     }
 

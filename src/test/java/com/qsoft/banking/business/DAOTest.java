@@ -46,8 +46,8 @@ public class DAOTest {
     BankAccountDAO bankAccountDAO;
     @Autowired
     TransactionDAO transactionDAO;
-    @Qualifier("dataSourceTest")
     @Autowired
+    @Qualifier("dataSourceTest")
     DataSource dataSourcetest;
     IDatabaseTester iDatabaseTester;
     final String accountNumber="0123456789";
@@ -83,5 +83,19 @@ public class DAOTest {
         assertEquals(accountNumber, bankAccountDTO.getAccountNumber());
         assertEquals(100.0, bankAccountDTO.getBalance());
         assertEquals(12345678, bankAccountDTO.getTimeStamp());
+    }
+    @Test
+    public void testGetAccountNonAxist() throws Exception
+    {
+        BankAccountDTO bankAccountDTO = bankAccountDAO.getAccount("123");
+        assertTrue(bankAccountDTO==null);
+    }
+    @Test
+    public void testSaveNewAccount() throws Exception
+    {
+        BankAccountDTO bankAccountDTO = new BankAccountDTO("123456789");
+        bankAccountDAO.save(bankAccountDTO);
+//        BankAccountDTO resultBankAccountDTO  = bankAccountDAO.getAccount("1234556789");
+
     }
 }

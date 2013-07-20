@@ -3,6 +3,8 @@ package com.qsoft.banking.persistence.dao.impl;
 import com.qsoft.banking.persistence.dao.TransactionDAO;
 import com.qsoft.banking.persistence.model.TransactionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,6 +15,8 @@ import java.util.List;
  * Time: 1:54 PM
  * To change this template use File | Settings | File Templates.
  */
+@Transactional
+@Component
 public class TransactionDAOImpl implements TransactionDAO{
     @Autowired
     TransactionDAO transactionDAO;

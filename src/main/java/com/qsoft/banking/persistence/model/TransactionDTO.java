@@ -17,7 +17,7 @@ public class TransactionDTO {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_id1")
     @Id
     @Column(name="id")
-    private int id;
+    private Integer id;
     @Column(name="account_number")
     private String accountNumber;
     @Column(name="open_time_stamp")
@@ -39,6 +39,42 @@ public class TransactionDTO {
     }
 
     public TransactionDTO() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
+    }
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
+
+    public static Calendar getCalendar() {
+        return calendar;
     }
 
     public String getAccountNumber() {

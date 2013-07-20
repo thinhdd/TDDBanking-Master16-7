@@ -17,21 +17,35 @@ public class BankAccountDTO {
     @GeneratedValue (strategy = GenerationType.AUTO, generator = "seq_id1")
     @Id
     @Column(name= "id")
-    private int id;
+    private Integer id;
     @Column(name= "account_number")
-    String accountNumber;
+    private String accountNumber;
     @Column(name = "balance")
-    double balance;
+    private double balance;
     @Column(name= "open_time_stamp")
-    long timeStamp;
+    private long timeStamp;
     static Calendar calendar = Calendar.getInstance();
     public BankAccountDTO(String accountNumber) {
         this.accountNumber=accountNumber;
-        timeStamp=calendar.getTimeInMillis();
+        this.balance=10.0;
+        this.timeStamp=12l;
+//        timeStamp=calendar.getTimeInMillis();
         //To change body of created methods use File | Settings | File Templates.
     }
 
     public BankAccountDTO() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public String getAccountNumber() {
